@@ -6,17 +6,16 @@ pipeline {
   }
   environment {
     MY_CREDS = credentials('nas-smb')
-    MY_CREDS_USR = "${params.INPUT}"
-    MY_CREDS_PSW = "${params.PASSWORD}"
+    
   }
   stages {
     stage('test') {
       steps {
         sh """
-          echo "credentials: ${MY_CREDS}"
+          mkdir nas
+          mount_smbfs //${MY_CREDS}@192.168.88.233/Web nas
+          cp nas/apidoc.json ./
           
-          echo "ID: ${MY_CREDS_USR}"
-          echo "PW: ${MY_CREDS_PSW}"
         """
       }
     }
