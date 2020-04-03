@@ -12,7 +12,7 @@ pipeline {
     stage('test') {
       steps {
         sh """
-          mkdir nas
+          mkdir -p nas
           mount -t smbfs //${MY_CREDS}@192.168.88.233/Web nas
           cp nas/apidoc.json ./
           
