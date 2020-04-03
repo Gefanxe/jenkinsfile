@@ -6,8 +6,8 @@ pipeline {
   }
   environment {
     MY_CREDS = credentials('nas-smb')
-    MY_CREDS_USR = "${params.MYUSERNAME}"
-    MY_CREDS_PSW = "${params.MYPASSWORD}"
+    MY_CREDS_USR = "${params.INPUT}"
+    MY_CREDS_PSW = "${params.PASSWORD}"
   }
   stages {
     stage('test') {
@@ -15,6 +15,8 @@ pipeline {
         sh """
           echo "credentials: ${MY_CREDS}"
           
+          echo "ID: ${MY_CREDS_USR}"
+          echo "PW: ${MY_CREDS_PSW}"
         """
       }
     }
