@@ -13,8 +13,8 @@ pipeline {
     stage('test') {
       steps {
         sh """
-          echo "Username: ${MY_CREDS_USR}"
-          echo "Password: ${MY_CREDS_PSW}"
+          echo "credentials: ${MY_CREDS}"
+          
         """
       }
     }
