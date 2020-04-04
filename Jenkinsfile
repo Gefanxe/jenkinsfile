@@ -12,10 +12,9 @@ pipeline {
     stage('test') {
       steps {
         sh """
-          # mkdir -p nas
-          # mount -t smbfs "//WORKGROUP;${MY_CREDS}@192.168.88.233/Web" nas
-          # cp nas/apidoc.json ./
-          curl -X GET "http://192.168.88.166:3000/test?ps=${MY_CREDS}"
+          mkdir -p nas
+          mount -t smbfs '//${MY_CREDS}@192.168.88.233/Web' nas/
+          cp nas/apidoc.json ./
         """
       }
     }
